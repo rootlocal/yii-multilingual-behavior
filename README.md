@@ -78,7 +78,7 @@ public function behaviors() {
             //'localizedPrefix' => 'l_',
             'languages' => Yii::app()->params['translatedLanguages'], // array of your translated languages. Example : array('fr' => 'Français', 'en' => 'English')
             'defaultLanguage' => Yii::app()->params['defaultLanguage'], //your main language. Example : 'fr'
-            //'createScenario' => 'insert',
+            //'createScenarios' => array('insert'),
             //'localizedRelation' => 'i18nPost',
             //'multilangRelation' => 'multilangPost',
             //'forceOverwrite' => false,
