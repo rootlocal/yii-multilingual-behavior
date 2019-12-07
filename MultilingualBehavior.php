@@ -56,7 +56,7 @@
  *             //'localizedPrefix' => 'l_',
  *             'languages' => Yii::app()->params['translatedLanguages'], // array of your translated languages. Example : array('fr' => 'Français', 'en' => 'English')
  *             'defaultLanguage' => Yii::app()->params['defaultLanguage'], //your main language. Example : 'fr'
- *             //'createScenario' => 'insert',
+ *             //'createScenarios' => array('insert'),
  *             //'localizedRelation' => 'i18nPost',
  *             //'multilangRelation' => 'multilangPost',
  *             //'forceOverwrite' => false,
@@ -210,7 +210,7 @@ class MultilingualBehavior extends CActiveRecordBehavior
     /**
      * @var string the scenario corresponding to the creation of the model. Default to 'insert'.
      */
-	public $createScenario = 'insert';
+	public $createScenarios = array('insert');
     
     /**
      * @var string the name the relation that is used to get translated attributes values for the current language.
@@ -430,7 +430,7 @@ class MultilingualBehavior extends CActiveRecordBehavior
      */
 	public function afterConstruct($event) {
 		$owner = $this->getOwner();
-		if ($owner->scenario==$this->createScenario) {
+		if (in_array($owner->scenario,$this->createScenarios)) {
 			$owner = new $this->langClassName;
 			foreach ($this->languages as $lang) {
 				foreach ($this->localizedAttributes as $field) {
